@@ -159,7 +159,7 @@ const Page = () => {
   const handlebut = async () => {
     if (main.current) {
       file.current = input.current.files[0];
-      console.log(file.current.type.slice(-3));
+      //console.log(file.current.type.slice(-3));
       if (!curr && file.current) slice(0,file.current)
       dataChannel.current.send(global);
       return;
