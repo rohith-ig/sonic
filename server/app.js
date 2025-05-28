@@ -39,6 +39,12 @@ io.on('connection',(socket) => {
     socket.on('answer', (payload) => {
         console.log("ans",payload.answer);
         io.to(map.get(payload.target)).emit("answer",{"answer":payload.answer});
+    });
+    socket.on('verify',(payload) => {
+        const find = map.get(payload.target);
+        console.log("targ",payload.target);
+        if (find) io.to(socket.id).emit("verify",{done:true,target:payload.target});
+        else io.to(socket.id).emit("verify",{done:false,target:payload.target});
     })
     socket.emit('message',`Connected ${io.engine.clientsCount}`)
     console.log(socket.id)
